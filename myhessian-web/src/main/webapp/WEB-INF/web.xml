@@ -10,19 +10,25 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet>  
-   <servlet-name>myservice</servlet-name>  
-   <servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
-   <load-on-startup>1</load-on-startup>
-   <init-param>
-        <param-name>service-class</param-name>  
-	    <param-value>org.myhessian.server.MyServiceImpl</param-value> 
-   </init-param>  
-  </servlet>  
-  <servlet-mapping>  
-	  <servlet-name>myservice</servlet-name>  
-	  <url-pattern>/myservice</url-pattern>  
-  </servlet-mapping>  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:remoting-servlet.xml</param-value> 
+  </context-param>
   
-  <!-- dfs -->
+ 	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> <!--添加监听器 -->
+	</listener>
+	
+	
+	<servlet>
+	    <servlet-name>remoting</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <load-on-startup>1</load-on-startup>
+	 </servlet>
+	    <servlet-mapping>
+		<servlet-name>remoting</servlet-name>
+		<url-pattern>/remoting/*</url-pattern>
+	</servlet-mapping>
+	
+  
 </web-app>

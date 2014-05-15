@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xmlns:tx = "http://www.springframework.org/schema/tx"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd" >    
+          
+  <bean id="myService" class="org.myhessian.server.MyServiceImpl"/>
+  <bean name="/myservice" class="org.springframework.remoting.caucho.HessianServiceExporter">
+   <!--  需要导出的目标bean-->
+    <property name="service" ref="myService"/>
+      <!--  Hessian服务的接口-->
+    <property name="serviceInterface" value="org.myhessian.client.MyService"/>
+  </bean>
+ 
+ 
+   <bean id="objService" class="org.myhessian.server.ObjectServiceImpl"/>
+   <bean name="/objService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+   <!--  需要导出的目标bean-->
+    <property name="service" ref="objService"/>
+      <!--  Hessian服务的接口-->
+    <property name="serviceInterface" value="org.myhessian.client.ObjectService"/>
+  </bean>
+ 
+ 
+ </beans>
