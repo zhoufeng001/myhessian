@@ -17,6 +17,7 @@ public class AuthHessianServiceExport extends HessianServiceExporter{
 		String auth = request.getHeader("auth");
 		if(!"is_zhoufeng".equals(auth)){
 			response.getWriter().write("no permition!");
+			response.getWriter().close(); 
 			System.out.println("发现非法请求,ip:" + request.getRemoteAddr() + ",url:" + request.getRequestURL());
 			return ;
 		}  
