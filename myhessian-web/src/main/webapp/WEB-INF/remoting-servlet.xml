@@ -8,7 +8,7 @@
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd" >    
           
   <bean id="myService" class="org.myhessian.server.MyServiceImpl"/>
-  <bean name="/myservice" class="org.springframework.remoting.caucho.HessianServiceExporter">
+  <bean name="/myservice" class="com.zf.myhessian.web.ext.AuthHessianServiceExport">
    <!--  需要导出的目标bean-->
     <property name="service" ref="myService"/>
       <!--  Hessian服务的接口-->
@@ -17,7 +17,7 @@
  
  
    <bean id="objService" class="org.myhessian.server.ObjectServiceImpl"/>
-   <bean name="/objService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+   <bean name="/objService" class="com.zf.myhessian.web.ext.AuthHessianServiceExport">
    <!--  需要导出的目标bean-->
     <property name="service" ref="objService"/>
       <!--  Hessian服务的接口-->
